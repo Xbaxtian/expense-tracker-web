@@ -1,50 +1,34 @@
-import { Card, CardBody, Form, FormInput, FormGroup, Button, FormRadio } from "shards-react";
-import Link from "next/link";
+import {
+  Container,
+  Button,
+  Form,
+  FormGroup,
+  FormInput,
+  FormTextarea,
+} from "shards-react";
 
 import axios from "axios";
 
-const Index = (props) => {
-
-  const handdleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const form = document.getElementById('login-form');
-      const data = new FormData(form);
-
-
-      const res = await axios.post(
-        process.env.API_URL + '/login',
-        data
-      );
-
-      console.log(res);
-    } catch (error) {
-      
-    }
-  }
+const index = () => {
+  const handleSubmit = (event) => {};
 
   return (
-    <Card style={{ maxWidth: "500px", margin: "auto" }}>
-      <CardBody>
-        <Form id="login-form">
-          <FormGroup>
-            <label htmlFor="email">Email</label>
-            <FormInput type="email" id="email" placeholder="Email" />
-          </FormGroup>
-          <FormGroup>
-            <label htmlFor="password">Password</label>
-            <FormInput type="password" id="password" placeholder="Password" />
-          </FormGroup>
-          <div style={{ textAlign: "center" }}>
-            <Button pill block>Login</Button>
-            <Link href="/signup">
-              <a>Sign Up</a>
-            </Link>
-          </div>
-        </Form>
-      </CardBody>
-    </Card>
+    <Container className="mt-5">
+      <Form onSubmit={handleSubmit}>
+        <FormGroup>
+          <label htmlFor="#amount">Amount</label>
+          <FormInput id="#amount" number />
+        </FormGroup>
+        <FormGroup>
+          <label htmlFor="#description">Description</label>
+          <FormTextarea id="#desciption" size="3" />
+        </FormGroup>
+        <FormGroup className="text-center">
+          <Button pill>Save</Button>
+        </FormGroup>
+      </Form>
+    </Container>
   );
 };
 
-export default Index;
+export default index;
